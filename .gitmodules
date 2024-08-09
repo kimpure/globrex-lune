@@ -1,0 +1,3 @@
+[submodule "regexp"]
+	path = regexp
+	url = https://github.com/kimpure/luau-regexp
