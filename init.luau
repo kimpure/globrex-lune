@@ -1,6 +1,5 @@
 --!strict
-local reg = require"@lune/regex";
-local Regex = require"./regexp/src";
+local Regex = require"./luau_packages/luau_regexp.luau";
 
 local isWin = require"@lune/process".os == 'windows';
 local SEP = if (isWin) then `\\\\+` else `\\/`;
@@ -67,7 +66,7 @@ function globrex(glob: string, option: { extended: boolean?, globstar: boolean?,
     
     local regex = '';
     local segment = '';
-    local path = { regex = '' :: string | typeof(Regex('')), segments = {} };
+    local path = { regex = '' :: string | typeof(Regex.new('')), segments = {} };
 
     local inGroup = false;
     local inRange = false;
@@ -88,7 +87,7 @@ function globrex(glob: string, option: { extended: boolean?, globstar: boolean?,
                     if (not (flags::string):find('g')) then
                         segment = `^{segment}$`;
                     end
-                    table.insert(path.segments, Regex(segment, flags));
+                    table.insert(path.segments, Regex.new(segment, flags));
                 end
                 segment = '';
             else
@@ -299,12 +298,12 @@ function globrex(glob: string, option: { extended: boolean?, globstar: boolean?,
         end
     end
     
-    local result = { regex = Regex(regex, flags), path = nil :: any? };
+    local result = { regex = Regex.new(regex, flags), path = nil :: any? };
 
     if (filepath) then
-        table.insert(path.segments, Regex(segment, flags));
-        path.regex = Regex(path.regex, flags);
-        path.globstar = Regex(if not (flags::string):find('g') then `^{GLOBSTAR_SEGMENT}$` else GLOBSTAR_SEGMENT, flags);
+        table.insert(path.segments, Regex.new(segment, flags));
+        path.regex = Regex.new(path.regex, flags);
+        path.globstar = Regex.new(if not (flags::string):find('g') then `^{GLOBSTAR_SEGMENT}$` else GLOBSTAR_SEGMENT, flags);
         result.path = path;
     end
     

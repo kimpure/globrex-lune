@@ -1,0 +1,15 @@
+name = "kimpure/globrex_lune"
+version = "0.1.0"
+description = "glob to regular expression compiler."
+authors = ["sunwoo"]
+repository = "https://github.com/kimpure/globrex-lune"
+license = "MIT"
+
+[target]
+environment = "lune"
+
+[indices]
+default = "https://github.com/daimond113/pesde-index"
+
+[dependencies]
+luau_regexp = { name = "jiwonz/luau_regexp", version = "^0.1.0", target = "luau" }
