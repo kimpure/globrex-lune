@@ -8,7 +8,7 @@
 This library is the lune version of <a href="https://github.com/terkelg/globrex">globrex</a> <br>
 use module : <a href="https://github.com/Roblox/luau-regexp">luau-regexp</a> <br>
 
-pesde : https://pesde.dev/packages/kimpure/globrex_lune <br>
+pesde : [globrex_lune](https://pesde.dev/packages/kimpure/globrex_lune) <br>
 
 ## Install
 pesde.toml
