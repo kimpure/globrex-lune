@@ -1,5 +1,4 @@
---!strict
-local Regex = require("../luau_packages/luau_regexp")
+local regexp = require("../luau_packages/luau_regexp")
 
 local isWin = require("@lune/process").os == "windows"
 local SEP = if isWin then "\\\\+" else "\\/"
@@ -17,8 +16,8 @@ type RegExp = {
 	ignoreCase: boolean,
 	multiline: boolean,
 	source: string,
-	exec: (self: Regex.RegExp, input: string) -> Regex.RegExp?,
-	test: (self: Regex.RegExp, input: string) -> boolean,
+	exec: (self: regexp.RegExp, input: string) -> regexp.RegExp?,
+	test: (self: regexp.RegExp, input: string) -> boolean,
 }
 
 export type Globrex = {
@@ -43,7 +42,7 @@ function globrex(
 
 	local regex = ""
 	local segment = ""
-	local path = { regex = "" :: string | Regex.RegExp, segments = {} }
+	local path = { regex = "" :: string | regexp.RegExp, segments = {} }
 
 	local inGroup = false
 	local inRange = false
@@ -69,7 +68,7 @@ function globrex(
 			if not (flags :: string):find("g") then
 				segment = `^{segment}$`
 			end
-			table.insert(path.segments, Regex.new(segment, flags))
+			table.insert(path.segments, regexp.new(segment, flags))
 		end
 		segment = ""
 	end
@@ -280,13 +279,13 @@ function globrex(
 		end
 	end
 
-	local result = { regex = Regex.new(regex, flags), path = nil :: any }
+	local result = { regex = (regexp.new(regex, flags) :: any) :: RegExp, path = nil :: any }
 
 	if filepath then
-		table.insert(path.segments, Regex.new(segment, flags))
-		path.regex = Regex.new(path.regex, flags)
+		table.insert(path.segments, regexp.new(segment, flags))
+		path.regex = (regexp.new(path.regex, flags) :: any) :: regexp.RegExp
 		path.globstar =
-			Regex.new(if not (flags :: string):find("g") then `^{GLOBSTAR_SEGMENT}$` else GLOBSTAR_SEGMENT, flags)
+			regexp.new(if not (flags :: string):find("g") then `^{GLOBSTAR_SEGMENT}$` else GLOBSTAR_SEGMENT, flags)
 		result.path = path
 	end
 
