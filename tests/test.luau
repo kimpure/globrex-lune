@@ -1,4 +1,4 @@
-local globrex = require('..');
+local globrex = require('../src');
 
 local result = globrex('p*uck')
 

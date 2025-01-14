@@ -1,5 +1,5 @@
 --!strict
-local Regex = require("./luau_packages/luau_regexp")
+local Regex = require("../luau_packages/luau_regexp")
 
 local isWin = require("@lune/process").os == "windows"
 local SEP = if isWin then "\\\\+" else "\\/"
