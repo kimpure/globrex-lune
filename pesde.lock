@@ -1,5 +1,5 @@
 name = "kimpure/globrex_lune"
-version = "0.1.0"
+version = "0.2.0"
 target = "lune"
 
 [graph."jiwonz/luau_regexp"."0.1.0 luau"]
@@ -14,7 +14,7 @@ lib = "src/Regexp.global.luau"
 ref_ty = "pesde"
 name = "jiwonz/luau_regexp"
 version = "0.1.0"
-index_url = "https://github.com/daimond113/pesde-index"
+index_url = "https://github.com/pesde-pkg/index"
 
 [graph."jiwonz/luau_regexp"."0.1.0 luau".pkg_ref.target]
 environment = "luau"

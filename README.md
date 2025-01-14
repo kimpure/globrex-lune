@@ -6,9 +6,17 @@
 
 ## Note
 This library is the lune version of <a href="https://github.com/terkelg/globrex">globrex</a> <br>
-use module : <a href="https://github.com/Roblox/luau-regexp">luau-regexp</a>
+use module : <a href="https://github.com/Roblox/luau-regexp">luau-regexp</a> <br>
+
+pesde : https://pesde.dev/packages/kimpure/globrex_lune <br>
 
 ## Install
+pesde.toml
+```toml
+pesde add kimpure/globrex_lune
+```
+
+submodule
 ```bash
 git submodule add https://github.com/kimpure/globrex-lune.git globrex-lune
 ```

@@ -1,8 +1,8 @@
 name = "kimpure/globrex_lune"
-version = "0.1.1"
 description = "glob to regular expression compiler."
-authors = ["sunwoo"]
 repository = "https://github.com/kimpure/globrex-lune"
+version = "0.2.0"
+authors = ["kimpure (sunwoo)"]
 license = "MIT"
 includes = ["src", "README.md", "LICENSE.md", "pesde.toml"]
 
@@ -12,7 +12,7 @@ lib = "src/init.luau"
 build_files = ["src"]
 
 [indices]
-default = "https://github.com/daimond113/pesde-index"
+default = "https://github.com/pesde-pkg/index"
 
 [dependencies]
 luau_regexp = { name = "jiwonz/luau_regexp", version = "^0.1.0", target = "luau" }
