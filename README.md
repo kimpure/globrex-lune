@@ -11,8 +11,8 @@ use module : <a href="https://github.com/Roblox/luau-regexp">luau-regexp</a> <br
 pesde : [globrex_lune](https://pesde.dev/packages/kimpure/globrex_lune) <br>
 
 ## Install
-pesde.toml
-```toml
+pesde
+```bash
 pesde add kimpure/globrex_lune
 ```
 

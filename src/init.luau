@@ -19,7 +19,7 @@ export type Globrex = {
 	}?,
 }
 
-return function (
+return function(
 	glob: string,
 	option: { extended: boolean?, globstar: boolean?, strict: boolean?, filepath: boolean?, flags: string? }?
 )
