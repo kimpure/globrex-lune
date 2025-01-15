@@ -16,3 +16,9 @@ default = "https://github.com/pesde-pkg/index"
 
 [dependencies]
 luau_regexp = { name = "jiwonz/luau_regexp", version = "^0.1.0", target = "luau" }
+
+[dev_dependencies]
+luau_check = { name = "jiwonz/luau_check", version = "^0.2.2" }
+selene = { name = "pesde/selene", version = "^0.27.1" }
+luau_lsp = { name = "pesde/luau_lsp", version = "^1.38.1" }
+stylua = { name = "pesde/stylua", version = "^2.0.2" }

@@ -10,26 +10,16 @@ local WILDCARD_SEGMENT = `([^{SEP_ESC}]*)`
 
 type Array<T> = { [number]: T }
 
-type RegExp = {
-	_innerRegEx: any,
-	global: boolean,
-	ignoreCase: boolean,
-	multiline: boolean,
-	source: string,
-	exec: (self: regexp.RegExp, input: string) -> regexp.RegExp?,
-	test: (self: regexp.RegExp, input: string) -> boolean,
-}
-
 export type Globrex = {
-	regex: RegExp,
+	regex: regexp.RegExp,
 	path: {
-		globstar: RegExp,
-		regex: RegExp,
-		segments: Array<RegExp>,
+		globstar: regexp.RegExp,
+		regex: regexp.RegExp,
+		segments: Array<regexp.RegExp>,
 	}?,
 }
 
-function globrex(
+return function (
 	glob: string,
 	option: { extended: boolean?, globstar: boolean?, strict: boolean?, filepath: boolean?, flags: string? }?
 )
@@ -279,7 +269,7 @@ function globrex(
 		end
 	end
 
-	local result = { regex = (regexp.new(regex, flags) :: any) :: RegExp, path = nil :: any }
+	local result = { regex = (regexp.new(regex, flags) :: any) :: regexp.RegExp, path = nil :: any }
 
 	if filepath then
 		table.insert(path.segments, regexp.new(segment, flags))
@@ -291,5 +281,3 @@ function globrex(
 
 	return result :: Globrex
 end
-
-return globrex
