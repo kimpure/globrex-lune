@@ -1,9 +1,7 @@
 local glob = require('../src')
 
-local js = glob('**/*.js', { globstar = true }).regex
+local foobar = glob('**/foo{bar,b*z}', { globstar = true, extended = true }).regex
 
-print(js.source)
-print(js:exec('w.js'))
-print(js:test('w.js'))
-
-
+print(foobar.source)
+print(foobar:exec('foobuzz'))
+print(foobar:test('foobuzz'))

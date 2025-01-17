@@ -1,4 +1,4 @@
-const js = new RegExp('^((?:[^/]*(?:/|$))*)([^/]*)\.js$');
+const foobar = new RegExp('^((?:[^/]*(?:/|$))*)foo(bar|b([^/]*)z)$');
 
-console.log(js.exec('w.js'));
-console.log(js.test('w.js'));
+console.log(foobar.exec('foobuzz'));
+console.log(foobar.test('foobuzz'));

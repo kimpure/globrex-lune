@@ -1,4 +1,4 @@
-local regexp = require('./regex')
+local regexp = require("./regex")
 
 local isWin = require("@lune/process").os == "windows"
 local SEP = if isWin then "\\\\+" else "\\/"
@@ -26,11 +26,11 @@ return function(
 	option: { extended: boolean?, globstar: boolean?, strict: boolean?, filepath: boolean?, flags: string? }?
 )
 	option = if option then option else {}
-	local extended = if (option :: any).extended then (option :: any).extended else false
-	local globstar = if (option :: any).globstar then (option :: any).globstar else false
-	local strict = if (option :: any).strict then (option :: any).strict else false
-	local filepath = if (option :: any).filepath then (option :: any).filepath else false
-	local flags = if (option :: any).flags then (option :: any).flags else ""
+	local extended = (option :: any).extended
+	local globstar = (option :: any).globstar
+	local strict = (option :: any).strict
+	local filepath = (option :: any).filepath
+	local flags = (option :: any).flags or ""
 
 	local regex = ""
 	local segment = ""
@@ -40,7 +40,7 @@ return function(
 	local inRange = false
 
 	local ext = {}
-	
+
 	local function add(str: string, split: boolean?, last: boolean?, only: string?)
 		if only ~= "path" then
 			regex = `{regex}{str}`
@@ -271,11 +271,14 @@ return function(
 		end
 	end
 
-	local result = { regex = (regexp(regex, flags) :: any), path = nil :: any }
+	local result = {
+		regex = regexp(regex, flags) :: any,
+		path = nil :: any,
+	}
 
 	if filepath then
 		table.insert(path.segments, regexp(segment, flags))
-		path.regex = (regexp(path.regex :: any, flags) :: any)
+		path.regex = regexp(path.regex :: any, flags) :: any
 		path.globstar =
 			regexp(if not (flags :: string):find("g") then `^{GLOBSTAR_SEGMENT}$` else GLOBSTAR_SEGMENT, flags)
 		result.path = path

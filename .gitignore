@@ -3,3 +3,6 @@ READ.js
 init2.luau
 luau_packages
 lune_packages
+package-lock.json
+package.json
+node_modules
