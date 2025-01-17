@@ -1,5 +1,5 @@
 name = "kimpure/globrex_lune"
-version = "0.2.2"
+version = "0.2.3"
 target = "lune"
 
 [graph."corecii/greentea"."0.4.11 lune"]

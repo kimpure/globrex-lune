@@ -1,4 +1,4 @@
-local regexp = require("../luau_packages/luau_regexp")
+local regexp = require('./regex')
 
 local isWin = require("@lune/process").os == "windows"
 local SEP = if isWin then "\\\\+" else "\\/"
@@ -10,12 +10,14 @@ local WILDCARD_SEGMENT = `([^{SEP_ESC}]*)`
 
 type Array<T> = { [number]: T }
 
+export type RegExp = regexp.RegExp
+
 export type Globrex = {
-	regex: regexp.RegExp,
+	regex: RegExp,
 	path: {
-		globstar: regexp.RegExp,
-		regex: regexp.RegExp,
-		segments: Array<regexp.RegExp>,
+		globstar: RegExp,
+		regex: RegExp,
+		segments: Array<RegExp>,
 	}?,
 }
 
@@ -32,13 +34,13 @@ return function(
 
 	local regex = ""
 	local segment = ""
-	local path = { regex = "" :: string | regexp.RegExp, segments = {} }
+	local path = { regex = "" :: string | RegExp, segments = {} }
 
 	local inGroup = false
 	local inRange = false
 
 	local ext = {}
-
+	
 	local function add(str: string, split: boolean?, last: boolean?, only: string?)
 		if only ~= "path" then
 			regex = `{regex}{str}`
@@ -58,7 +60,7 @@ return function(
 			if not (flags :: string):find("g") then
 				segment = `^{segment}$`
 			end
-			table.insert(path.segments, regexp.new(segment, flags))
+			table.insert(path.segments, regexp(segment, flags))
 		end
 		segment = ""
 	end
@@ -269,13 +271,13 @@ return function(
 		end
 	end
 
-	local result = { regex = (regexp.new(regex, flags) :: any) :: regexp.RegExp, path = nil :: any }
+	local result = { regex = (regexp(regex, flags) :: any), path = nil :: any }
 
 	if filepath then
-		table.insert(path.segments, regexp.new(segment, flags))
-		path.regex = (regexp.new(path.regex, flags) :: any) :: regexp.RegExp
+		table.insert(path.segments, regexp(segment, flags))
+		path.regex = (regexp(path.regex :: any, flags) :: any)
 		path.globstar =
-			regexp.new(if not (flags :: string):find("g") then `^{GLOBSTAR_SEGMENT}$` else GLOBSTAR_SEGMENT, flags)
+			regexp(if not (flags :: string):find("g") then `^{GLOBSTAR_SEGMENT}$` else GLOBSTAR_SEGMENT, flags)
 		result.path = path
 	end
 

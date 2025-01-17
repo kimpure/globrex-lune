@@ -1,6 +1,9 @@
-local globrex = require('../src');
+local glob = require('../src')
 
-local result = globrex('p*uck')
+local js = glob('**/*.js', { globstar = true }).regex
 
-print(result.regex.source)
-print(result.regex:test('pluck')); -- true
+print(js.source)
+print(js:exec('w.js'))
+print(js:test('w.js'))
+
+
