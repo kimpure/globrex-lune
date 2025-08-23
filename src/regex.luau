@@ -20,15 +20,6 @@ export type RegExp = typeof(setmetatable({} :: {
 local regex_support = {} :: RegExpImpl
 regex_support.__index = regex_support
 
-function new(pattern: string, option: any): RegExp
-    local source = (regexp.new(pattern, option) :: any).source
-    local regex =  regex.new(source)
-    return setmetatable({
-        source = source,
-        regex = regex,
-    }, regex_support)
-end
-
 function regex_support.test(self, text)
     return self.regex:isMatch(text)
 end
@@ -59,4 +50,11 @@ function regex_support.exec(self, text)
 end
 
 
-return new
+return function(pattern: string, option: any): RegExp
+    local source = (regexp.new(pattern, option) :: any).source
+    local regex =  regex.new(source)
+    return setmetatable({
+        source = source,
+        regex = regex,
+    }, regex_support)
+end
