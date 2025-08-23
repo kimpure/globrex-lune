@@ -1,4 +1,4 @@
-local glob = require('../src')
+local glob = require('../src/lib')
 
 local foobar = glob('**/foo{bar,b*z}', { globstar = true, extended = true }).regex
 
