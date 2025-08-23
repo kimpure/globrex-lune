@@ -1,7 +1,7 @@
 name = "kimpure/globrex_lune"
 description = "glob to regular expression compiler."
 repository = "https://github.com/kimpure/globrex-lune"
-version = "0.2.4"
+version = "0.2.5"
 authors = ["kimpure (sunwoo)"]
 license = "MIT"
 includes = ["src", "README.md", "LICENSE.md", "pesde.toml"]
