@@ -15,7 +15,6 @@ build_files = ["src"]
 default = "https://github.com/pesde-pkg/index"
 
 [dependencies]
-luau_regexp = { name = "jiwonz/luau_regexp", version = "^0.1.0", target = "luau" }
 globrex_lune = { name = "kimpure/globrex_lune", version = "^0.2.8" }
 
 [dev_dependencies]
